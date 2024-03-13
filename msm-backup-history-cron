@@ -1,0 +1,21 @@
+# 
+# msm-backup-history Cron
+#
+# Runs weekly, yearly and monthly backups
+#
+# ~lukengda
+
+# Creates a biyealy backup jan-01 and jul-01 30 minutes past 4 in the morning
+30 04 1 */6 *   minecraft   /usr/local/bin/msm-backup-history.sh yearly create
+
+# Cleanup monthly backups at first day of the month 35 minutes past 4 in the morning
+35 04 1 * *   minecraft   /usr/local/bin/msm-backup-history.sh monthly cleanup
+
+# Creates a monthly backup first day of the month 40 minutes past 4 in the morning
+40 04 1 * *   minecraft   /usr/local/bin/msm-backup-history.sh monthly create
+
+# Cleanup weelky backups first day of the week 45 minutes past 4 in the morning
+45 04 * * 1   minecraft   /usr/local/bin/msm-backup-history.sh weekly cleanup
+
+# Creates a weekly backup first day of the week 50 minutes past 4 in the morning
+50 04 * * 1   minecraft   /usr/local/bin/msm-backup-history.sh weekly create
