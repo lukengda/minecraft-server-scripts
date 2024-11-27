@@ -41,7 +41,7 @@ CURRENT=$(<$CACHE_PATH)
 
 # If IP address hasn't changed, exit, otherwise save the new IP
 if [ "$IP_ADDRESS" == "$CURRENT" ]; then
-    echo "No update required. IP address is still $IP_ADDRESS"
+    echo "$(date) | No update required. IP address is still $IP_ADDRESS"
     exit 0
 fi
 echo $IP_ADDRESS > $CACHE_PATH
@@ -49,7 +49,7 @@ echo $IP_ADDRESS > $CACHE_PATH
 # Update dns
 result=`curl -s "https://cloudpit.io/dynDns/update?login=$DOMAIN&password=$PASSWORD&ip=$IP_ADDRESS"`
 
-echo "$result"
+echo "$(date) | $result"
 # Check if the result is ok.
 if [ "$result" = "IP updated for $DOMAIN" ]; then
     exit 0
